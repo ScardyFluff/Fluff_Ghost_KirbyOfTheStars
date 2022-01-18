@@ -1,0 +1,22 @@
+﻿
+// --- Basic
+charset,UTF-8
+name,Kirby of the Stars
+type,ghost
+
+craftman,ScardyFluff
+craftmanurl,
+
+// --- Character
+sakura.name,Kirby
+kero.name,None
+
+//Touching is good. (Seriously though, NO.)
+sstp.allowunspecifiedsend,0
+shiori,yaya.dll
+
+// --- Icon
+icon,Fluff_KirbyIcon.ico
+
+// --- Balloon
+balloon,Fluff_Hoshi

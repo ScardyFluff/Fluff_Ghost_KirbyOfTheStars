@@ -1,0 +1,9 @@
+﻿
+//--- Basic ---
+
+charset,UTF-8
+type,ghost
+name,Kirby of the Stars
+directory,Fluff_Kirby
+
+//balloon.directory,Fluff_Hoshi

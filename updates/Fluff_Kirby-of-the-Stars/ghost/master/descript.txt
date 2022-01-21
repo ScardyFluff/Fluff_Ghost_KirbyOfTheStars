@@ -16,7 +16,7 @@ sstp.allowunspecifiedsend,0
 shiori,yaya.dll
 
 // --- Icon
-icon,Fluff_KirbyIcon.ico
+icon,icon_kirby-of-the-stars.ico
 
 // --- Balloon
 balloon,Fluff_Hoshi

@@ -6,4 +6,4 @@ type,ghost
 name,Kirby of the Stars
 directory,Fluff_Kirby-of-the-Stars
 
-//balloon.directory,Fluff_Hoshi
+//balloon.directory,Fluff_KatFL-Kirby

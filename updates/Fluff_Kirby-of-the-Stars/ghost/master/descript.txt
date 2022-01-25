@@ -5,11 +5,11 @@ name,Kirby of the Stars
 type,ghost
 
 craftman,ScardyFluff
-craftmanurl,
+craftmanurl,https://scardyfluff.github.io/Fluff_Website_GhostHub/index.html
 
 // --- Character
 sakura.name,Kirby
-kero.name,None
+kero.name,Friend
 
 //Touching is good. (Seriously though, NO.)
 sstp.allowunspecifiedsend,0
@@ -19,4 +19,4 @@ shiori,yaya.dll
 icon,icon_kirby-of-the-stars.ico
 
 // --- Balloon
-balloon,Fluff_Hoshi
+balloon,Fluff_KatFL-Kirby

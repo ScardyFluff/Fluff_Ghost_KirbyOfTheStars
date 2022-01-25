@@ -1,4 +1,6 @@
 ﻿
+//--- descript.txt
+
 //Free or Bound
 seriko.alignmenttodesktop,free
 
@@ -10,9 +12,9 @@ seriko.use_self_alpha,1
 //Basic
 charset,UTF-8
 type,shell
-name,Normal
+name,Default
 craftman,ScardyFluff
-craftmanurl,
+craftmanurl,https://scardyfluff.github.io/Fluff_Website_GhostHub/index.html
 
 
 //Balloon Coordinates
@@ -67,14 +69,17 @@ menu.sidebar.bitmap.filename,menu_sidebar.png
 
 
 //Outfit Setup
-sakura.bindgroup100.name,Ability,Sword
+sakura.bindgroup100.name,Ability,Archer
 sakura.bindgroup100.default,0
-sakura.bindgroup101.name,Ability,Cutter
-sakura.bindgroup101.default,0
+//sakura.bindgroup101.name,Ability,Cutter
+//sakura.bindgroup101.default,0
 
+//Outfit Layering
+//sakura.bindoption0.group,Guns,multiple
+//sakura.bindoption2.group,Hand,mustselect
 
 //Outfit Menu
-sakura.menuitem0,100
+//sakura.menuitem0,100
 
 //kero.menuitem1,-
 //kero.menuitem2,57

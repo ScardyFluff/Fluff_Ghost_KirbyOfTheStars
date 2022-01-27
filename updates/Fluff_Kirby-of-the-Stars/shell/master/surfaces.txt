@@ -55,9 +55,9 @@ collision1,0,0,1,1,Face
 100pattern1,3500,0,interpolate,0,0//Weapon
 
 //Artist
-101interval,bind
-101pattern0,3001,0,overlay,0,0//Hat
-101pattern1,3501,0,interpolate,0,0//Weapon
+//101interval,bind
+//101pattern0,3001,0,overlay,0,0//Hat
+//101pattern1,3501,0,interpolate,0,0//Weapon
 
 //Beam
 //102interval,bind
@@ -95,8 +95,8 @@ collision1,0,0,1,1,Face
 
 
 //Dressup
-200interval,bind
-200pattern0,400,0,add,0,0
+//200interval,bind
+//200pattern0,400,0,add,0,0
 
 }
 

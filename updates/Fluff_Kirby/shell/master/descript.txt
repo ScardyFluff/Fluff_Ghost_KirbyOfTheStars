@@ -1,5 +1,5 @@
 ﻿
-//--- descript.txt
+// --- descript.txt ---
 
 //Free or Bound
 seriko.alignmenttodesktop,free
@@ -67,12 +67,26 @@ menu.background.bitmap.filename,menu_background.png
 menu.foreground.bitmap.filename,menu_foreground.png
 menu.sidebar.bitmap.filename,menu_sidebar.png
 
+//Activate Dressup
+//sakura.menu,hidden
+//kero.menu,hidden
 
 //Outfit Setup
-sakura.bindgroup100.name,Ability,Archer
-sakura.bindgroup100.default,0
-//sakura.bindgroup101.name,Ability,Cutter
-//sakura.bindgroup101.default,0
+//sakura.bindgroup100.name,Ability,Normal
+//sakura.bindgroup100.default,0
+
+sakura.bindgroup101.name,Ability,Archer
+sakura.bindgroup101.default,0
+
+//sakura.bindgroup102.name,Ability,Artist
+//sakura.bindgroup102.default,0
+
+//sakura.bindgroup102.name,Ability,Beam
+//sakura.bindgroup102.default,0
+
+//sakura.bindgroup102.name,Ability,Bomb
+//sakura.bindgroup102.default,0
+
 
 //Outfit Layering
 //sakura.bindoption0.group,Guns,multiple

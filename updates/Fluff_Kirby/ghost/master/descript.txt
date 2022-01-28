@@ -1,13 +1,12 @@
 ﻿
-// --- Basic
+// --- Basic ---
 charset,UTF-8
 name,Kirby of the Stars
 type,ghost
-
 craftman,ScardyFluff
 craftmanurl,https://scardyfluff.github.io/Fluff_Website_GhostHub/index.html
 
-// --- Character
+// --- Character(s) ---
 sakura.name,Kirby
 kero.name,Friend
 
@@ -15,8 +14,8 @@ kero.name,Friend
 sstp.allowunspecifiedsend,0
 shiori,yaya.dll
 
-// --- Icon
-icon,icon_kirby-of-the-stars.ico
+// --- Icon ---
+icon,icon_kirby.ico
 
-// --- Balloon
+// --- Balloon ---
 balloon,Fluff_KatFL-Kirby

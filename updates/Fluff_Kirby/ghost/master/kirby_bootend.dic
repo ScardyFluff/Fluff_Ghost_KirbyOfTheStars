@@ -1,5 +1,5 @@
 ﻿
-//--- bootend.dic ---
+// --- kirby_bootend.dic ---
 
 OnFirstBoot //\![raise,OnFirstBoot,0]
 {
@@ -16,11 +16,20 @@ OnFirstBoot //\![raise,OnFirstBoot,0]
 	talktime = "5 minutes"
 	deleteshitai = "OFF"
 	nowshell = "master"
+	copyabilityON = 0
+	archerON = 0
+	artistON = 0
 	firstboot = 1
 	
 	if reference0 == 0
  	{
-		"\![enter,passivemode]\1\s[10]\0\s[0]Name?\w5\![open,inputbox,OnNameTeach,-1]\e"
+		// This line goes to kirby_nameteach.dic and does everything there.
+		
+		"\![enter,passivemode]"
+		--
+		"\![bind,Ability,0]\0\s[0]\1\s[10]"
+		--
+		"Name?\w5\![open,inputbox,OnNameTeach,-1]\e"
  	}
 	else //Uninstall and reinstall greeting text
  	{
@@ -78,24 +87,43 @@ dayslot
 //***********************************************************************
 
 OnBoot
- {
+{
 	lastTalk = "" //These values you may recognize from OnFirstBoot up there. Just pay them no mind.
 	passhour = 0
 	passmin = 0
 	passsec = 0
-	
- 	"\0\s[0]\1\s[10]" //This sets them up in their neutral pose for now.
-	
-	//If you don't want to deal with individual day messages when you boot them, you can delete everything down to the end bracket for OnBoot (use Notepad++'s bracket tracking abilities to find where it is!) and instead add "%(normalboottalk)" to the end of the snip of dialogue up there that sets them up in their neutral poses. I'm pretty sure that should shortcut it properly. Simplified, it'd look like...
-	//OnBoot
-	//{
-	//lastTalk = ""
-	//passhour = 0
-	//passmin = 0
-	//passsec = 0 
-	//"\0\s[0]\1\s[10]%(normalboottalk)"
-	//}
-	//If you want to check what day it is first though, read on ahead!
+
+ 	//"\0\s[0]\1\s[10]"
+
+	if RAND(4) < 3
+	//if RAND(100) < 50
+	{
+		copyabilityON = 1
+
+		""
+
+		--
+
+		if RAND(2) == 1 && copyabilityON == 1
+		{
+			archerON = 1
+			"\0\s[0]\![bind,Ability,Archer,1]\1\s[10]"
+		}
+		elseif RAND(2) == 2 && copyabilityON == 1
+		{
+			artistON = 1
+			"\0\s[0]\![bind,Ability,Artist,1]\1\s[10]"
+		}
+		else
+		{
+			"\0\s[0]\1\s[10]"
+		}		
+	}
+	else
+	{
+		"\0\s[0]\1\s[10]"
+	}
+
 	--
 	
 	if dayslot == userbirthday //Now we're getting into the if statements. These check what the date is and, if it's a certain value, displays special dialogue. Here, the if statement is looking at the dayslot value (which we just defined) and evaluating it using the == operator to see if it equals another value, in this case the value "userbirthday". Basically this is checking to see if it's the user's birthday.
@@ -134,18 +162,6 @@ OnBoot
 		"%(normalboottalk)" //If none of the days above match the current date, the ghost instead will go down to the next function, normalboottalk.
 	}
 }
-
-
-//--normalboottalk
-
-//This is another unique bit of coding from cindysuke's ghost. OnBoot above checks for the day when you open them, but normalboottalk will vary their dialogue in a few different ways depending on the time and weekday. If you don't want to use these, you can delete everything under normalboottalk and write your own lines of general boot dialogue, so it'd look something like.
-
-//normalboottalk
-//{
-//[insert your general boot dialogue here]
-//}
-
-//Otherwise, just replace the upcoming pieces of dialogue with what you like.
 
 
 normalboottalk
@@ -321,7 +337,7 @@ OnClose
 
  OnWindowStateMinimize
  {
-	"\0\s[0]This dialogue means we're being minimized.\w8\1\s[10]Gonna get tiny for a bit.\e"
+	"\0\s[0]Minimized!\e"
 }
 
 
@@ -331,107 +347,87 @@ OnClose
 
 OnWindowStateRestore
  {
-	"\0\s[0]This dialogue means we were minimized.\w8\1\s[10]Then brought back up.\e"
+	"\0\s[0]Maximized!\e"
 }
 
 
-//--OnGhostChanging
-
 //This runs whenever you change or reload the ghost. You can change ghosts by going into the right click menu and going to Change Ghost, but this dialogue will also be called if you reload them using Utilities->Reload Ghost or the Developer's Console->Reload->Ghost. Protip: If you are going to make a ghost, you will be reloading it A LOT.
 //Note: If you reload your ghost using the developer console instead of Utilities->Reload Ghost, it won't do this dialogue, so don't freak out if it doesn't show up.
- 
 OnGhostChanging
  {
-	if reference0 == "Girl" //Replace this with the name of your Sakura character as you put in install.txt or descript.txt. I set this up to use the full ghost's name with Hunter and Smoker but I forget exactly how I did it and I'm having trouble getting it to work again. I think I just didn't define the Sakura or Kero names in either descript.txt or install.txt. You can experiment with it yourself. Otherwise, leave it as your Sakura character's name.
+	if reference0 == "Kirby" //Replace this with the name of your Sakura character as you put in install.txt or descript.txt. I set this up to use the full ghost's name with Hunter and Smoker but I forget exactly how I did it and I'm having trouble getting it to work again. I think I just didn't define the Sakura or Kero names in either descript.txt or install.txt. You can experiment with it yourself. Otherwise, leave it as your Sakura character's name.
 	{
-		"\0\s[0]This dialogue is for us reloading ourselves.\w8\w8\e"
-		//Replace this dialogue with whatever you like.
+		"\0\s[0]I will reload.\w8\w8\e"
 	}
  	else //If you're switching to another Ghost.
 	{
-		"\0\s[0]This dialogue means we are switching to %(reference0).\w8\1\s[10]Bye.\w8\w8\e"
+		"\0\s[0]I'm swapping to %(reference0).\w8\w8\e"
 		
 		//Replace this dialogue with whatever you like. Notice the use of the %(reference0) envelope here? In OnGhostChanging, %(reference0) stores the name of the ghost being swapped to, so if you want to display what you're switching to, you can use %(reference0) as in this example. You don't have to use %(reference0) if you don't want to though.
 	}
 }
 
 
-//--OnGhostChanged
-
 //A sister to the above, this runs after the ghost has either reloaded itself, or when you switch from another ghost to this ghost.
-
 OnGhostChanged
 {
-	"\0\s[0]\1\s[10]" //this sets up their default poses
+	"\0\s[0]\1\s[10]"
 	--
-	if reference0 == "Girl" //As above, this should be the name of your ghost as in install.txt or descript.txt.
+	if reference0 == "Kirby"
 	{
-		"\0\s[0]We have reloaded ourselves.\1\w8\s[10]Sure have.\e"
+		"\0\s[0]I have reloaded.\e"
 	}
-	else //If you're switching to them from another ghost...
+	else
 	{
-		"\1\s[10]Goodbye, %(reference0).\w8\0\s[0]Someone switched from you to us.\e"
-
+		"\1\s[10]Bye, %(reference0).\e"
 		//Again, %(reference0) in this function is the name of the ghost in question. As above, replace these two lines of dialogue what what'd be appropriate for your ghost.
 	}
 }
 
 
-//--OnShellChanging
-
-//This will run when you change your ghost's shell. If you don't have any other shells for your ghost, you can safely ignore this but don't delete it, you might as well keep it just in case. I probably won't add a different shell to this template because shells are a lot of work ugh, but for the sake of argument, let's pretend I did.
-
+// Whenever you change Kirby's shells, he will say these!
 OnShellChanging
  {
-	if reference0 == "Hypothetical Shell that doesn't actually exist" //reference0 in OnShellChanging is the name of the shell you're swapping to. It should be defined in the descript.txt file in your shell folder. If you do have alternate shells, put in the right name here.
+	if reference0 == "classic"
 	{
-	"\1\s[10]This dialogue is specifically for changing to this particular shell.\w8\0\w8\s[9]It totally exists.\w8\e"
-	//Then rewrite this line as appropriate.
+	"\o\s[0]Changing to Classic.\w8\e"
 	}
-	else //if you don't have any specific dialogue for a specific shell
+	elseif reference0 == "cherry"
 	{
-	"\0\s[0]This dialogue is for changing shells.\w8\1\s[10]Sure is.\w8\e"
-	
-	"\1\s[10]This is another bit of dialogue for changing shells.\w8\0\s[8]I wonder how many people will actually have multiple shells?\e"
-	
-	//Rewrite these two lines as you need.
+	"\o\s[0]Changing to Cherry.\w8\e"
+	}
+	else
+	{
+	"\0\s[0]Ooh! how am I gonna look like now? \w5I can't wait!\w8\e"
 	}
  }
  
- 
- //--OnShellChanged
- 
- //The sister to the above, this is the dialogue after you've changed the shell.
- 
+
+// After you change Kirby's shell, and he returns, he will say these!
+//Note: reference0 is the name of the shell, while nowshell is the folder's name!
 OnShellChanged
  {
- 	if reference0 == "GT Default Shell" //Again, this is the name of your shell as you put in the descript.txt file for that shell.
+ 	if reference0 == "Modern"
  	{
- 		nowshell = "master" //This is the folder name for your shell. Not the same as the above! 
+ 		nowshell = "master"
+
+ 		"\0\s[0]Back to my usual look.\e"
+	}
+ 	elseif reference0 == "JPN Classic"
+ 	{
+ 		nowshell = "JPNclassic"
 		
- 		"\0\s[0]This dialogue is for switching to our default shell.\w8\1\s[18]No really, will anyone actually put in the work to use these functions?\w8\0\s[9]\n\n[half]Shh.\e"
-		//Replace dialogue as required.
+ 		"\0\s[0]Original Japanese look.\e"
  	}
- 	elseif reference0 == "Hypothetical Shell that doesn't actually exist" //You can use as many elseifs for as many shells as you've got.
+ 	elseif reference0 == "US Classic"
  	{
- 		nowshell = "totallyrealshell"
+ 		nowshell = "USclassic"
 		
- 		"\0\s[0]This dialogue is for switching to that hypothetical shell.\e"
-		
- 		"\0\s[0]This is another bit of dialogue for switching to this hypothetical shell.\w8\1\s[18]Man if you actually use this, you should tell Zar, it'll blow her mind.\w8\0\n\n[half]\s[9]Shut up, we're not supposed to be in-character here.\e"
-		//Replace these bits with whatever you have in mind.
+ 		"\0\s[0]US Box Art look.\e"
  	}
- 	elseif reference0 == "Another totally real shell wow"
+ 	else
  	{
- 		nowshell = "thiswouldbesomuchwork"
-		
- 		"\1\s[10]This dialogue is after we've switched to another totally real shell.\e"
-		//Replace this as well.
- 	}
- 	else //For any shell without a specific name, or if you don't want to bother with individual responses to a shell.
- 	{
-	"\0\s[0]This dialogue is after we've changed our shell to %(reference[0]).\w8\1\s[18]How many shells you got?\e"
-	
+	"\0\s[0]I swapped to %(reference[0]).\e"
 	//Note the %(reference[0]) here! This time that should store the name of whatever shell you're switching to. Replace this bit of dialogue as you need.
 	}
  }

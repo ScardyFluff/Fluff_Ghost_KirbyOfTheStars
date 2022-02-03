@@ -78,8 +78,8 @@ menu.sidebar.bitmap.filename,menu_sidebar.png
 sakura.bindgroup101.name,Ability,Archer
 sakura.bindgroup101.default,0
 
-//sakura.bindgroup102.name,Ability,Artist
-//sakura.bindgroup102.default,0
+sakura.bindgroup102.name,Ability,Artist
+sakura.bindgroup102.default,0
 
 //sakura.bindgroup102.name,Ability,Beam
 //sakura.bindgroup102.default,0
@@ -93,7 +93,9 @@ sakura.bindgroup101.default,0
 //sakura.bindoption2.group,Hand,mustselect
 
 //Outfit Menu
-//sakura.menuitem0,100
+sakura.menuitem0,101
+sakura.menuitem1,102
+//sakura.menuitem2,-
 
 //kero.menuitem1,-
 //kero.menuitem2,57

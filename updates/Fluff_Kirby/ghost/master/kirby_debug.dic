@@ -1,1 +1,67 @@
 ﻿
+// --- kirby_debug.dic ---
+
+	//*********************Advanced User Info*******************************
+	//If you're checking a value in an if statement, remember! 
+	//= will define a value, so if you put blah = 90, it will change blah to 90.
+	//== will check the value in an if statement, so if you put blah == 90, it will check if blah equals 90.
+	//This tripped me up at first, so keep it in mind!
+	//***********************************************************************
+
+
+AbilityBoot
+{
+	if RAND(100) < 50
+	{
+		copyabilityON = 1
+
+		--
+
+		if RAND(31) == 1 && copyabilityON == 1
+		{
+			archerON = 1
+			"\0\s[0]\i[101]\1\s[10]"
+		}
+		elseif RAND(31) == 2 && copyabilityON == 1
+		{
+			artistON = 1
+			"\0\s[0]\i[102]\1\s[10]"
+		}
+		else
+		{
+			"\0\s[0]\i[-1]\1\s[10]"
+		}		
+	}
+	else
+	{
+		"\0\s[0]\i[-1]\1\s[10]"
+	}	
+}
+
+
+//OnGhostChanged
+	if RAND(100) < 50
+	{
+		copyabilityON = 1
+
+		--
+
+		if RAND(31) == 1 && copyabilityON == 1
+		{
+			archerON = 1
+			"\0\s[0]\i[101]\1\s[10]"
+		}
+		elseif RAND(31) == 2 && copyabilityON == 1
+		{
+			artistON = 1
+			"\0\s[0]\i[102]\1\s[10]"
+		}
+		else
+		{
+			"\0\s[0]\i[-1]\1\s[10]"
+		}		
+	}
+	else
+	{
+		"\0\s[0]\i[-1]\1\s[10]"
+	}

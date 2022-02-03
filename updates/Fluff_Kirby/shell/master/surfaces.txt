@@ -8,10 +8,13 @@ surface0
 {
 // --- Basic
 element0,overlay,surface0.png,0,0
+//element1,overlayfast,surface100.png,0,0
+
 
 // --- Collision
 collision0,0,0,1,1,Head
 collision1,0,0,1,1,Face
+
 
 //--- Blink
 0interval,random,4
@@ -20,6 +23,7 @@ collision1,0,0,1,1,Face
 0pattern2,2001,10,overlay,80,129
 0pattern3,2000,5,overlay,80,129
 0pattern4,-1,3,overlay,80,129
+
 
 //--- Talk
 1interval,talk,5
@@ -47,63 +51,65 @@ collision1,0,0,1,1,Face
 4pattern2,2504,8,overlay,94,163
 4pattern3,-1,3,overlay,94,163
 
+
 //--- Copy Abilites (31)
 
-//Normal
+//Normal 00
 //100interval,bind
 //100pattern0,3000,0,overlay,0,0
 //100pattern1,3500,0,interpolate,0,0
 
-//Archer
+//Archer 01
 101interval,bind
 101pattern0,3001,0,overlay,45,65
 101pattern1,3501,0,interpolate,35,93
 
-//Artist
-//102interval,bind
-//102pattern0,3002,0,replace,0,0
-//102pattern1,3502,0,interpolate,0,0
+//Artist 02
+102interval,bind
+102pattern0,3002,0,overlay,45,65
+102pattern1,3502,0,interpolate,35,93
 
-//Beam
+//Beam 03
 //103interval,bind
 //103pattern0,3003,0,replace,0,0
 //103pattern1,3503,0,interpolate,0,0
 
-//Bomb
+//Bomb 04
 //104interval,bind
 //104pattern0,3004,0,replace,0,0
 //104pattern1,3504,0,interpolate,0,0
 
-//Circus
-//Cleaning
-//Doctor
-//ESP
-//Fighter
-//Ghost
-//Hammer
-//Hi-Jump
-//Ice
-//Jet
-//Leaf
-//Magic
-//Metal
-//Mike
-//Mirror
-//Ninja
-//Parasol
-//Poison
-//Ranger
-//Sleep
-//Spear
-//Sword
-//Water
-//Whip
-//Wing
-//Wrestler
-//Yo-Yo
+//Circus 05
+//Cleaning 06
+//Doctor 07
+//ESP 08
+//Fighter 09
+//Ghost 10
+//Hammer 11
+//Hi-Jump 12
+//Ice 13
+//Jet 14
+//Leaf 15
+//Magic 16
+//Metal 17
+//Mike 18
+//Mirror 19
+//Ninja 20
+//Parasol 21
+//Poison 22
+//Ranger 23
+//Sleep 24
+//Spear 25
+//Sword 26
+//Water 27
+//Whip 28
+//Wing 29
+//Wrestler 30
+//Yo-Yo 31
 
 
-//Dressup (???)
+//--- Dressups (???)
+
 //200interval,bind
 //200pattern0,400,0,add,0,0
 
@@ -154,72 +160,35 @@ collision1,0,0,1,1,Face
 4pattern2,2504,8,overlay,94,163
 4pattern3,-1,3,overlay,94,163
 
+
 //--- Copy Abilites (31)
 
-//Normal
+//Normal 00
 //100interval,bind
 //100pattern0,3000,0,overlay,0,0
 //100pattern1,3500,0,interpolate,0,0
 
-//Archer
+//Archer 01
 101interval,bind
 101pattern0,3001,0,overlay,28,30
 101pattern1,3501,0,interpolate,37,91
 
-//Artist
-//102interval,bind
-//102pattern0,3002,0,replace,0,0
-//102pattern1,3502,0,interpolate,0,0
+//Artist 02
+102interval,bind
+102pattern0,3002,0,overlay,28,30
+102pattern1,3502,0,interpolate,37,91
 
-//Beam
+//Beam 03
 //103interval,bind
 //103pattern0,3003,0,replace,0,0
 //103pattern1,3503,0,interpolate,0,0
 
-//Bomb
+//Bomb 04
 //104interval,bind
 //104pattern0,3004,0,replace,0,0
 //104pattern1,3504,0,interpolate,0,0
 
-//Circus
-//Cleaning
-//Doctor
-//ESP
-//Fighter
-//Ghost
-//Hammer
-//Hi-Jump
-//Ice
-//Jet
-//Leaf
-//Magic
-//Metal
-//Mike
-//Mirror
-//Ninja
-//Parasol
-//Poison
-//Ranger
-//Sleep
-//Spear
-//Sword
-//Water
-//Whip
-//Wing
-//Wrestler
-//Yo-Yo
-
-
-//Dressup (???)
-//200interval,bind
-//200pattern0,400,0,add,0,0
-
 }
-
-
-
-
-
 
 
 

@@ -1,9 +1,10 @@
 ﻿
-//--- nameteach.dic ---
+// --- kirby_nameteach.dic ---
 
-OnTeachName // from bootend.dic
+// We arrived here from kirby_bootend.dic.
+OnTeachName
 {
-	if reference0 == "TEACHNAME" //ignore this
+	if reference0 == "TEACHNAME"
 		{
 			"\0\s[0]Choose a new name.\![open,inputbox,OnNameTeach,-1]\e"
 		}
@@ -93,8 +94,6 @@ TitleInput
 		"\n\n[half]/
 		\![*]\q[I want a title!,titlegimme]\n/
 		\![*]\q[Nothing really.,titlenone]\e"
-
-	//"\1\s[10]Now that the pronouns are set, we will ask for the user's name. \w8\0\s[0]What is your name, user? \![open,inputbox,OnNameTeach,-1]\e"
 }
 
 

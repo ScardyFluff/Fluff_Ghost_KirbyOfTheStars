@@ -1,5 +1,5 @@
 ﻿
-// --- kirby_bootend.dic ---
+//--- kirby_bootend.dic -------------------------------------------------------------
 
 OnFirstBoot //\![raise,OnFirstBoot,0]
 {
@@ -12,7 +12,7 @@ OnFirstBoot //\![raise,OnFirstBoot,0]
  	teachusername = 0
 	mikireflag = 0
  	aitalkinterval = 300
- 	birthdayprint = "????"
+ 	birthdayprint = "?????"
 	talktime = "5 minutes"
 	deleteshitai = "OFF"
 	nowshell = "master"
@@ -20,24 +20,25 @@ OnFirstBoot //\![raise,OnFirstBoot,0]
 	archerON = 0
 	artistON = 0
 	firstboot = 1
-	
+
 	if reference0 == 0
  	{
-		// This line goes to kirby_nameteach.dic and does everything there.
-		
+		// These lines go to kirby_nameteach.dic and does everything there.
 		"\![enter,passivemode]"
 		--
-		"\![bind,Ability,0]\0\s[0]\1\s[10]"
+		"\![bind,Ability,,0]\0\s[0]\1\s[10]"
 		--
 		"Name?\w5\![open,inputbox,OnNameTeach,-1]\e"
  	}
-	else //Uninstall and reinstall greeting text
+	else
  	{
  		{
+			//This line is for when Kirby was Uninstalled and then Reinstalled.
 			"\0\s[0]I'm back.\e"
 		}
  	}
 }
+
 
 timeslot
 {
@@ -56,14 +57,7 @@ timeslot
 	else
 	{ "midnight" }
 }
-//*********************Advanced User Info*******************************
-//Do you see how this function is determining what time of day it is? It's using larger than/smaller than operators to isolate a range of time to define. For example, "hour >= 21 && hour <= 24" defines an hour that's greater than/equal to 21 AND less than/equal to 24. You can use this basic method to define other things too, such as the seasons. Keep this in mind! You never know when it might come in handy. I talk about operators more in the coding walkthrough page.
-//***********************************************************************
 
-
-//--dayslot
-
-//Like the above, but to find out what day it is. You can primarily use this for specialized dialogue on certain days, like the user's birthday. Either way, don't touch it.
 
 dayslot
 {
@@ -71,280 +65,209 @@ dayslot
 }
 
 
-//-----------------------Normal Booting----------------------------
-
-//From this point on, the dialogue will be for any normal boot of your ghost. You can specialize this for certain days or times if you like, or if you're uninterested, leave it very simple.
-
-
-//--OnBoot
-
-//As you can probably guess, OnBoot runs when you boot your ghost.
-
-//*********************Advanced User Info*******************************
-//If you're defining new values that depend on what you were doing with your ghost (like say, if you've hit them, if they're in a certain mode of some kind) and are generally temporary, remember to put them in OnBoot and set them back to zero or off. For example, I have a counter in the Hunter Smoker ghost that keeps track of if you've hit one of them so that when you go into their menus, it will know to give you the option to apologize or not. So I made sure to add a hunterpunchcount = 0 tag at the beginning of OnBoot, that way when you boot them up, they start fresh and don't display the option if you haven't done anything wrong yet. It's unlikely this'll come up very much if you're not interested in expanding your ghost, but I'm making a note of it here anyway for enterprising developers, huge success.
-
-//You can also stick any values you want to reset on boot into their own function, like "BootReset", then run BootReset instead during boot so it's a bit less unwieldy. It's up to you though!
-//***********************************************************************
+//--- Normal Boot -------------------------------------------------------------------
 
 OnBoot
 {
-	lastTalk = "" //These values you may recognize from OnFirstBoot up there. Just pay them no mind.
+//Variables to reset on a normal boot.
+	lastTalk = ""
+	
+	copyabilityON = 0
+	archerON = 0
+	artistON = 0
+	
 	passhour = 0
 	passmin = 0
 	passsec = 0
 
- 	//"\0\s[0]\1\s[10]"
-
-	if RAND(4) < 3
-	//if RAND(100) < 50
+//this sets it up so Kirby can appear with different copy abilities on boot.
+	if RAND(100) >= 50
 	{
 		copyabilityON = 1
+		_copyAbilityRandomizer = RAND(3)
 
-		""
-
-		--
-
-		if RAND(2) == 1 && copyabilityON == 1
+		case _copyAbilityRandomizer
 		{
-			archerON = 1
-			"\0\s[0]\![bind,Ability,Archer,1]\1\s[10]"
+			when 0
+			{
+				archerON = 1
+				"\0\s[0]\![bind,Ability,Archer,1]Archer\1\s[10]"
+			}
+			when 1
+			{
+				artistON = 1
+				"\0\s[0]\![bind,Ability,Artist,1]Artist\1\s[10]"
+			}
+			others
+			{
+				copyabilityON = 0
+				"\0\s[0]\![bind,Ability,,0]The first randomizer rolled more than 50, but the second one rolled 3.\1\s[10]"
+			}
 		}
-		elseif RAND(2) == 2 && copyabilityON == 1
-		{
-			artistON = 1
-			"\0\s[0]\![bind,Ability,Artist,1]\1\s[10]"
-		}
-		else
-		{
-			"\0\s[0]\1\s[10]"
-		}		
 	}
 	else
 	{
-		"\0\s[0]\1\s[10]"
+		"\0\s[0]\![bind,Ability,,0]It rolled less than 50.\1\s[10]"
 	}
-
 	--
-	
-	if dayslot == userbirthday //Now we're getting into the if statements. These check what the date is and, if it's a certain value, displays special dialogue. Here, the if statement is looking at the dayslot value (which we just defined) and evaluating it using the == operator to see if it equals another value, in this case the value "userbirthday". Basically this is checking to see if it's the user's birthday.
-	
-	//*********************Advanced User Info*******************************
-	//If you're checking a value in an if statement, remember! 
-	//= will define a value, so if you put blah = 90, it will change blah to 90.
-	//== will check the value in an if statement, so if you put blah == 90, it will check if blah equals 90.
-	//This tripped me up at first, so keep it in mind!
-	//***********************************************************************
-	
+	//this will check if it's the user's birthday!
+	if dayslot == userbirthday
 	{
-				"\0\s[0]It's %(bornmonthprint) %(borndayprint).\w8\1\s[10]Happy birthday, %(username).\e" 
-				
-				//Notice in this dialogue that there are two new envelopes, %(bornmonthprint) and %(borndayprint). These two things basically display the user's birthday - bornmonthprint is the month and borndayprint is the day. These were defined when the user put in their birthday in the menu.dic file. See word.dic for more info on envelopes.
-				//If the user didn't or hasn't put in their birthday yet, this dialogue will basically never get called. Which makes sense.
+		"\0\s[0]It's %(bornmonthprint) %(borndayprint).\w8 Happy birthday, %(username).\e" 
 	}
-	
-	elseif dayslot == "6month 6day" //Like above, this if statement is checking the date. It's looking for the sixth month and the sixth day.
-	
-	//*********************Advanced User Info*******************************
-	//elseif statements always go after an if statement, and essentially are just what they sound like... if this thing happens, do this; else, if this thing happens, do this. elseifs are good if you have multiple things you want to check for in one function, like multiple days of the year as we're doing right now. elseifs go in descending order, so it'll always check if one is true, then if two is true, then if three is true, and so on.
-	//***********************************************************************
-	
+	elseif dayslot == "6month 6day"
 	{
-				"\0\s[0]Today is June 6th.\e"
+		"\0\s[0]Today is June 6th.\e"
 	}
 	elseif dayslot == "7month 4day"
 	{
-				"\1\s[10]It's the fourth of July.\e"
-				
-				//You can see how these basically work. You can add in new elseif statements along these same lines with your own dayslots if you want to have them say things for all sorts of days. You can also change these existing ones I put in as examples to other dates, like your character's birthdays, perhaps. This is up to you! If you don't care about this, you can delete all the elseifs and just leave the one for the user's birthday.
+		"\1\s[10]It's the fourth of July.\e"
 	}
 	else
 	{
-		"%(normalboottalk)" //If none of the days above match the current date, the ghost instead will go down to the next function, normalboottalk.
+		//if none of the above are true, go to here and continue to "normalboottalk"
+		"%(normalboottalk)"
 	}
 }
 
 
 normalboottalk
 {
-	if weekday == 6 && hour >= 19 //This checks if the weekday equals six, meaning saturday AND (using the && operator) if the hour is past 19. You can change these numbers or values to anything you like! As such you can check any combination of date and day and time for potential boot dialogue. You can also add more elseif checks for other days if you want.
+	//This checks if the weekday equals six, meaning saturday AND (using the && operator) if the hour is past 19. You can change these numbers or values to anything you like! As such you can check any combination of date and day and time for potential boot dialogue. You can also add more elseif checks for other days if you want.
+	if weekday == 6 && hour >= 19
 		{
-		"\0\s[0]It's Saturday night.\e"
+			"\0\s[0]It's Saturday night.\e"
 		}
-	elseif RAND(100) < 40 //What this does is choose a random number from 1-100, and then checks if that number is less than 40. If it's less than forty, then these dialogue pieces will occur. Remember, you can have multiple lines of dialogue within one set of brackets like this! You just need to make sure they're all enclosed in their own set of quotation marks.
-		{
-		"\0\s[0]This is one of the random boot conversations.\w8\1\s[10]The random number drawn was less than forty.\e"
-	
-		"\1\s[10]This is another one of the random boot conversations.\w8\0\s[0]The random number was again less than forty.\e"
-	
-		"\0\s[0]This is the third random boot conversation.\w8\1\s[10]The random number was less than forty.\e"
-		}
+	//elseif RAND(100) < 40
+		//{
+		//	"\0\s[0]This is one of the random boot conversations.\w8\1\s[10]The random number drawn was less than forty.\e"
+		//}
  	else
  	{
 		//The following if statements check the time of the day as defined above in the GetTimeSlot function. Do you remember the names that it defined? Now we're going to use them!
-		
-		if timeslot == "earlymorning" //The following dialogue will be called if they are booted during the time specified in GetTimeSlot (in this case, the hour being more than/equal to 5 but less than/equal to 8). Remember, you can add as many lines of dialogue here as you want, or take away as many as you want! Replace the dialogue here with what you see fit.
+		//The following dialogue will be called if they are booted during the time specified in GetTimeSlot (in this case, the hour being more than/equal to 5 but less than/equal to 8). Remember, you can add as many lines of dialogue here as you want, or take away as many as you want! Replace the dialogue here with what you see fit.
+		if timeslot == "earlymorning" 
 		{
-		"\0\s[0]This is an early morning boot dialogue.\w8\1\s[10]Between the hours of five and eight.\e"
-		
-		"\1\s[10]This is another early morning boot dialogue.\w8\0\s[0]Again, between the hours of five and eight.\e"
-		
-		"\1\s[10]This is the third early morning boot dialogue.\w8\0\s[0]Between the hours of five and eight.\e"
+			"\0\s[0]This is an early morning boot dialogue.\e"
 		}
 		elseif timeslot == "morning"
 		{
-		"\0\s[0]This is a morning boot dialogue.\e"
-		
-		"\1\s[10]This is another morning boot dialogue.\w8\0\s[0]Yup.\e"
+			"\0\s[0]This is a morning boot dialogue.\e"
 		}
 		elseif timeslot == "lunch"
 		{
-		"\0\s[0]This is a lunch boot dialogue.\1\s[10]Sure is.\e"
-		
-		"\1\s[10]This is another lunch boot dialogue.\e"
+			"\0\s[0]This is a lunch boot dialogue.\e"
 		}
 		elseif timeslot == "afternoon"
 		{
-		"\1\s[10]This is an afternoon boot dialogue.\w8\0\s[0]That it is.\e"
+			"\1\s[10]This is an afternoon boot dialogue.\e"
 		}
 		elseif timeslot == "evening"
 		{
- 		"\0\s[0]This is an evening boot dialogue.\1\s[10]Between the hours of 18 and 20.\e"
+			"\0\s[0]This is an evening boot dialogue.\e"
 		}
 		elseif timeslot == "latenight"
 		{
- 		"\0\s[0]This is a late night boot dialogue.\1\w8\s[10]Between 21 and 24.\e"
-		
- 		"\0\s[0]This is another late night boot dialogue.\1\w8\s[10]That it is.\e"
-		
- 		"\1\s[10]This is the third late night boot dialogue.\w8\0\s[0]Between 21 and 24.\e"
+			"\0\s[0]This is a late night boot dialogue.\e"
 		}
-		else //the last timeslot we haven't done is midnight, which is what's under here.
+		else
 		{
-		"\0\s[0]This is a middle of the night boot dialogue.\1\w8\s[10]From midnight to five.\e"
-		
- 		"\0\s[0]This is another middle of the night boot dialogue.\1\w8\s[10]That it is.\e"
-		
- 		"\1\s[10]This is the third middle of the night boot dialogue.\w8\0\s[0]Very late at night.\e"
+			"\0\s[0]This is a middle of the night boot dialogue.\e"
 		}
 	}
 }
 
 
-//--OnClose
-
-//OnClose runs when you close your ghost. Like OnBoot, this can be customized for times and days if you like, as you saw above. It can also be easily simplified down to
-//OnClose
-//{
-//[insert your dialogue here]
-//}
-//if you don't want to deal with the time slots. Although do note, close dialogue must end with a \- instead of \e. \- will close the program.
-//Like above with OnBoot, just replace all the following pieces of dialogue with your own. Note though that each bit here ends with \w8 instead of \e. That's because the actual end statement to close the ghost is at the very end, one of the very very rare times you won't have to end a line with \e. Instead, end it with \w8 so there's a little bit of a pause for the user before your ghost closes so they can read the last message.
-
 OnClose
  {
-	if passmin >= 5 || passhour > 0	//This checks to see if you've had them open for at least five minutes.
+	//This checks to see if you've had them open for at least five minutes.
+	if passmin >= 5 || passhour > 0
 		{
-			if RAND(100) < 40 //see above about the random number generator
+			if RAND(100) < 40
 			{
-				"\0\s[0]This is a random close dialogue.\w8\1\s[10]The random number generator chose something below 40.\w8\w8"
+				"\0\s[0]The random number generator chose something below 40.\w8\w8"
 			}
 			else
 			{
-			if timeslot == "earlymorning"
+				if timeslot == "earlymorning"
 				{
 					"\1\s[10]This is an early morning close dialogue.\w8\0\s[0]From 5 to 8.\w8"
 					
 					"\0\s[0]This is another early morning close dialogue.\w8\1\s[10]Yup.\w8\w8"
 				}
-			elseif timeslot == "morning"
+				elseif timeslot == "morning"
  				{
  					"\0\s[0]This is a morning close dialogue.\w8\w8"
  				}
- 			elseif timeslot == "lunch"
+				elseif timeslot == "lunch"
  				{
  					"\0\s[0]This is a lunch close dialogue.\w8\1\s[10]Yup.\w8"
 					
  					"\0\s[0]This is another lunch close dialogue.\w8\1\s[10]In the middle of the day.\w8"
  				}
- 			elseif timeslot == "afternoon"
+				elseif timeslot == "afternoon"
  				{
  					"\0\s[0]This is an afternoon close dialogue.\w8\1\s[10]Done.\w8"
 					
  					"\1\s[10]This is another afternoon close dialogue.\w8\0\s[0]Yup.\w8"
  				}
-  			elseif timeslot == "evening"
+				elseif timeslot == "evening"
  				{
- 						if weekday == 6 //here, a nested if statement is checking that if it's evening, is it also saturday? You can do this to check more specific times on other days as well. You can change this to some other day if you want, or just delete this little if/else section entirely and write your own evening related close dialogue.
- 						{
- 							"\0\s[0]This is a Saturday evening close dialogue.\w8\1\s[10]Somewhat specific.\w8"
- 						}
- 						else //if it's not saturday, then it'll do this dialogue instead.
- 						{
- 							"\0\s[0]This is an evening close dialogue.\w8\1\s[10]Bye.\w8"
-							
- 							"\1\s[10]This is another evening close dialogue.\w8\0\s[0]Yup.\w8"
- 						}
+ 					if weekday == 6 //here, a nested if statement is checking that if it's evening, is it also saturday? You can do this to check more specific times on other days as well. You can change this to some other day if you want, or just delete this little if/else section entirely and write your own evening related close dialogue.
+ 					{
+						"\0\s[0]This is a Saturday evening close dialogue.\w8\1\s[10]Somewhat specific.\w8"
+ 					}
+ 					else //if it's not saturday, then it'll do this dialogue instead.
+ 					{
+ 						"\0\s[0]This is an evening close dialogue.\w8\1\s[10]Bye.\w8"
+	
+ 						"\1\s[10]This is another evening close dialogue.\w8\0\s[0]Yup.\w8"
+ 					}
  				}
-			elseif timeslot == "latenight"
+				elseif timeslot == "latenight"
 			 	{
- 						if weekday == 6 //This is the same check as above to see if it's Saturday. Note that this doesn't have an else statement! Sometimes you can get away with that, but make sure you test thoroughly.
-						//Of course, you can also cut this check entirely if you want.
- 						{
- 							"\0\s[0]This is a late Saturday night close dialogue.\w8"
-							
- 							"\1\s[10]This is another late Saturday night close dialogue.\w8\0\s[0]Yup.\w8"
- 						}
-						
- 						"\1\s[10]This is a late night close dialogue.\w8\0\s[0]That it is.\w8"
-						
-						"\0\s[0]This is another late night close dialogue.\w8\1\s[10]Done.\w8"
+ 					if weekday == 6 //This is the same check as above to see if it's Saturday. Note that this doesn't have an else statement! Sometimes you can get away with that, but make sure you test thoroughly.
+					//Of course, you can also cut this check entirely if you want.
+ 					{
+						"\0\s[0]This is a late Saturday night close dialogue.\w8"
+ 					}
+ 					"\1\s[10]This is a late night close dialogue.\w8\0\s[0]That it is.\w8"
  				}
-			else //like above, this is the midnight time slot since it's the last one left.
+				else //like above, this is the midnight time slot since it's the last one left.
  				{
- 						if weekday == 0 //checking if it's the middle of the night on Sunday
- 						{
- 							"\1\s[10]This is a middle of the night Sunday close dialogue.\w8\0\s[0]From midnight to five AM on Sunday.\w8"
- 						}
-						"\0\s[0]This is a middle of the night close dialogue.\w8\1\s[10]Very late at night.\w8"
-						
-						"\1\s[10]This is another middle of the night close dialogue.\w8"
-						
-						"\1\s[10]This is the third middle of the night close dialogue.\w8\0\s[0]So it is.\w8"
+ 					if weekday == 0 //checking if it's the middle of the night on Sunday
+ 					{
+ 						"\1\s[10]This is a middle of the night Sunday close dialogue.\w8\0\s[0]From midnight to five AM on Sunday.\w8"
+ 					}
+					"\0\s[0]This is a middle of the night close dialogue.\w8\1\s[10]Very late at night.\w8"
+
+					"\1\s[10]This is another middle of the night close dialogue.\w8"
+
+					"\1\s[10]This is the third middle of the night close dialogue.\w8\0\s[0]So it is.\w8"
 				}
-			}
-				
+			}	
  		}
- 		
- 		
- 	else //This dialogue is for if they haven't been open for at least five minutes.
+ 	else
  	{
- 		"\0\s[0]This dialogue is for closing us before five minutes have passed.\w8\w8"
-		
- 		"\1\s[10]This is another bit of dialogue for closing us before five minutes have passed.\w8\0\s[0]Quickly done.\w8\w8"
+		//This dialogue is for if they haven't been open for at least five minutes.
+ 		"\0\s[0]Not even five minutes have passed...\w8\w8"
  	}
  	--
-	"\-\e" //this bit of code actually closes and ends the ghost. Because \e is here, you don't have to end each line above with it. Again, this will come up very rarely, so OnClose is an unusual case.
+	//this bit of code actually closes and ends the ghost. Because \e is here, you don't have to end each line above with it. Again, this will come up very rarely, so OnClose is an unusual case.
+	"\-\e"
  }
 
 
- //-------------------------State Changing--------------------
- //From here on, most of the dialogue will have to do with changing shells, ghosts, or states in some way.
- 
- 
- //--OnWindowStateMinimize
+//--- State Changes -----------------------------------------------------------------
 
 //This will run when you minimize them. Replace with what you like.
-
  OnWindowStateMinimize
  {
 	"\0\s[0]Minimized!\e"
 }
 
 
-//--OnWindowStateRestore
-
 //This will run when you minimize them and then bring them back up. Replace with what you like.
-
 OnWindowStateRestore
  {
 	"\0\s[0]Maximized!\e"
@@ -355,15 +278,13 @@ OnWindowStateRestore
 //Note: If you reload your ghost using the developer console instead of Utilities->Reload Ghost, it won't do this dialogue, so don't freak out if it doesn't show up.
 OnGhostChanging
  {
-	if reference0 == "Kirby" //Replace this with the name of your Sakura character as you put in install.txt or descript.txt. I set this up to use the full ghost's name with Hunter and Smoker but I forget exactly how I did it and I'm having trouble getting it to work again. I think I just didn't define the Sakura or Kero names in either descript.txt or install.txt. You can experiment with it yourself. Otherwise, leave it as your Sakura character's name.
+	if reference0 == "Kirby"
 	{
 		"\0\s[0]I will reload.\w8\w8\e"
 	}
- 	else //If you're switching to another Ghost.
+ 	else
 	{
 		"\0\s[0]I'm swapping to %(reference0).\w8\w8\e"
-		
-		//Replace this dialogue with whatever you like. Notice the use of the %(reference0) envelope here? In OnGhostChanging, %(reference0) stores the name of the ghost being swapped to, so if you want to display what you're switching to, you can use %(reference0) as in this example. You don't have to use %(reference0) if you don't want to though.
 	}
 }
 
@@ -375,12 +296,11 @@ OnGhostChanged
 	--
 	if reference0 == "Kirby"
 	{
-		"\0\s[0]I have reloaded.\e"
+		"\0\s[0]I have reloaded.\1\s[10]\e"
 	}
 	else
 	{
-		"\1\s[10]Bye, %(reference0).\e"
-		//Again, %(reference0) in this function is the name of the ghost in question. As above, replace these two lines of dialogue what what'd be appropriate for your ghost.
+		"\0\s[0]Bye, %(reference0).\1\s[10]\e"
 	}
 }
 
@@ -394,7 +314,7 @@ OnShellChanging
 	}
 	elseif reference0 == "cherry"
 	{
-	"\o\s[0]Changing to Cherry.\w8\e"
+	"\o\s[0]Changing to Cherry Paint.\w8\e"
 	}
 	else
 	{
@@ -404,7 +324,7 @@ OnShellChanging
  
 
 // After you change Kirby's shell, and he returns, he will say these!
-//Note: reference0 is the name of the shell, while nowshell is the folder's name!
+// Note: reference0 is the name of the shell, while nowshell is the folder's name!
 OnShellChanged
  {
  	if reference0 == "Modern"
@@ -413,17 +333,17 @@ OnShellChanged
 
  		"\0\s[0]Back to my usual look.\e"
 	}
- 	elseif reference0 == "JPN Classic"
+ 	elseif reference0 == "Classic"
  	{
- 		nowshell = "JPNclassic"
+ 		nowshell = "classic"
 		
- 		"\0\s[0]Original Japanese look.\e"
+ 		"\0\s[0]Original look.\e"
  	}
- 	elseif reference0 == "US Classic"
+ 	elseif reference0 == "Cherry Paint"
  	{
- 		nowshell = "USclassic"
+ 		nowshell = "cherry"
 		
- 		"\0\s[0]US Box Art look.\e"
+ 		"\0\s[0]The Cherry look.\e"
  	}
  	else
  	{

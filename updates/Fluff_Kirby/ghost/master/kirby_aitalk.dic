@@ -10,7 +10,7 @@
 //Leave this alone.
 //Advanced users, this is mostly setting up whether or not dialogue is in a chain before it displays. Again, you can leave it alone unless you want to screw around with chains for some strange reason.
 
-AiTalk
+OnAiTalk
  {
 	if RAND(100) < communicateratio
  	{

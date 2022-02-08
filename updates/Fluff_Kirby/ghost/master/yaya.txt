@@ -13,7 +13,7 @@ charset.extension, UTF-8
 //These are the .dic files your ghost will be using. You can add new .dic files or take them away as you like, just always make sure to test your ghost to make sure it still works if you do. This can be very finicky.
 //I would recommend adding the initials of your ghost to the front of your .dic files, such as hs_string or hs_bootend, particularly if you're going to be editing multiple ghosts at once, or studying other ghost's files to see how they work. It'll help you keep the files straight in Notepad++. You don't have to though, that's optional. If you do, make sure to change the filenames here too, so if you changed the filename to hs_string, make sure you come back here and change the line here to dic,hs_string.
 
-include, system_config.txt		
+include, system_config.txt
 dic, kirby_string.dic			
 dic, kirby_aitalk.dic			
 dic, kirby_bootend.dic		
@@ -31,4 +31,4 @@ dic, kirby_anchor.dic
 
 
 //log, ayame.log
-msglang,english
+messagetxt,system/messagetxt/english.txt

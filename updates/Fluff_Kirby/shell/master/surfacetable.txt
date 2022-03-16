@@ -11,7 +11,17 @@ group,Kirby
 	scope,0
 
 		0,Default
-		1,Test
+		Thinking
+		ThinkingSide
+		HappySide
+		Cheer
+		Side
+		Hop
+		Wave
+		Guilty
+		SquishCheeks
+		Embarassed
+		
 }
 
 group,Friend

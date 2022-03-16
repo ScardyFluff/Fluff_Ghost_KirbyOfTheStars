@@ -24,7 +24,18 @@ dic, kirby_word.dic
 dic, kirby_commu.dic
 dic, kirby_nameteach.dic
 dic, kirby_anchor.dic
-//dic, kirby_debug.dic
+dic, kirby_copyability.dic
+//dic, kirby_health.dic
+//dic, kirby_adventures.dic
+//dic, kirby_storyone.dic
+//dic, kirby_storytwo.dic
+//dic, kirby_storythree.dic
+//dic, kirby_.dic
+
+
+
+
+dic, kirby_debug.dic
 
 //---- Log Location -------------------------------------------------------------------------
 //I'm not entirely sure what this does, but basically don't touch it.

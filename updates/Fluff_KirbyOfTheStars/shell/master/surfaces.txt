@@ -10,12 +10,10 @@ surface0
 element0,overlay,surface0.png,0,0
 //element1,overlayfast,surface100.png,0,0
 
-
 // --- Collision
 collision0,0,0,1,1,Head
 collision1,0,0,1,1,Face
 collision2,0,0,1,1,Belly
-
 
 //--- Blink
 0interval,random,4
@@ -24,7 +22,6 @@ collision2,0,0,1,1,Belly
 0pattern2,2001,10,overlay,80,129
 0pattern3,2000,5,overlay,80,129
 0pattern4,-1,3,overlay,80,129
-
 
 //--- Talk
 1interval,talk,5
@@ -52,21 +49,19 @@ collision2,0,0,1,1,Belly
 4pattern2,2504,8,overlay,94,163
 4pattern3,-1,3,overlay,94,163
 
-
 //--- Idle Animation
-5interval,random,1000
-5pattern0,0000,5,overlay,1,1
-5pattern1,0000,5,overlay,1,1
-5pattern2,0000,5,overlay,1,1
-5pattern3,0000,5,overlay,1,1
-5pattern4,0000,5,overlay,1,1
-5pattern5,-1,0,overlay,1,1
-
+//5interval,random,1000
+//5pattern0,0000,5,overlay,1,1
+//5pattern1,0000,5,overlay,1,1
+//5pattern2,0000,5,overlay,1,1
+//5pattern3,0000,5,overlay,1,1
+//5pattern4,0000,5,overlay,1,1
+//5pattern5,-1,0,overlay,1,1
 
 //--- Copy Abilites (31)
 
 //Normal 00
-//100interval,bind
+//100interval,never
 //100pattern0,3000,0,overlay,0,0
 //100pattern1,3500,0,interpolate,0,0
 
@@ -90,19 +85,19 @@ collision2,0,0,1,1,Belly
 //104pattern0,3004,0,replace,0,0
 //104pattern1,3504,0,interpolate,0,0
 
-//Circus 05
+//Circus 05 X
 //Cleaning 06
 //Doctor 07
 //ESP 08
 //Fighter 09
 //Ghost 10
 //Hammer 11
-//Hi-Jump 12
+//Hi-Jump 12 X
 //Ice 13
 //Jet 14
 //Leaf 15
-//Magic 16
-//Metal 17
+//Magic 16 X
+//Metal 17 X
 //Mike 18
 //Mirror 19
 //Ninja 20
@@ -110,14 +105,13 @@ collision2,0,0,1,1,Belly
 //Poison 22
 //Ranger 23
 //Sleep 24
-//Spear 25
+//Spear 25 X
 //Sword 26
 //Water 27
 //Whip 28
 //Wing 29
-//Wrestler 30
+//Wrestler 30 X
 //Yo-Yo 31
-
 
 //--- Dressups (???)
 
@@ -171,7 +165,6 @@ collision1,0,0,1,1,Face
 4pattern2,2504,8,overlay,94,163
 4pattern3,-1,3,overlay,94,163
 
-
 //--- Copy Abilites (31)
 
 //Normal 00
@@ -198,9 +191,7 @@ collision1,0,0,1,1,Face
 //104interval,bind
 //104pattern0,3004,0,replace,0,0
 //104pattern1,3504,0,interpolate,0,0
-
 }
-
 
 
 //Side Character
@@ -208,7 +199,6 @@ surface10
 {
 element0,overlay,surface10.png,0,0
 }
-
 
 //--Surface.alias------------------
 

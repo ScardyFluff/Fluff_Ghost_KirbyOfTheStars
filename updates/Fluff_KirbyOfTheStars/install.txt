@@ -4,6 +4,6 @@
 charset,UTF-8
 type,ghost
 name,Kirby of the Stars
-directory,Fluff_Kirby
+directory,Fluff_KirbyOfTheStars
 
-balloon.directory,Fluff_KatFL-Kirby
+balloon.directory,Fluff_StarWindow

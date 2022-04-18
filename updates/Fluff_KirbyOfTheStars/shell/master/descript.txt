@@ -4,10 +4,8 @@
 //Free or Bound
 seriko.alignmenttodesktop,free
 
-
 //Use_self_alpha
 seriko.use_self_alpha,1
-
 
 //Basic
 charset,UTF-8
@@ -15,7 +13,6 @@ type,shell
 name,Default
 craftman,ScardyFluff
 craftmanurl,https://scardyfluff.github.io/Fluff_Website_GhostHub/index.html
-
 
 //Balloon Coordinates
 sakura.balloon.offsetx,0
@@ -25,42 +22,35 @@ kero.balloon.offsety,0
 sakura.balloon.alignment,none
 kero.balloon.alignment,none
 
-
 //Shiori Icon - No Touchy!
 shiori.logo.filename,resources\niseshiori.png
 shiori.logo.x,16
 shiori.logo.y,256
-
 
 //Menu Font Color
 menu.background.font.color.r,0
 menu.background.font.color.g,0
 menu.background.font.color.b,0
 
-
 //Menu Highlighted Text Color
 menu.foreground.font.color.r,255
 menu.foreground.font.color.g,255
 menu.foreground.font.color.b,255
-
 
 //Menu Greyed Out Font Color
 menu.disable.font.color.r,222
 menu.disable.font.color.g,222
 menu.disable.font.color.b,222
 
-
 //Menu Separator Color
 menu.separator.color.r,240
 menu.separator.color.g,240
 menu.separator.color.b,240
 
-
 //Menu Background Image Alignment
 menu.background.alignment,righttop
 menu.foreground.alignment,righttop
 menu.sidebar.alignment,bottom
-
 
 //Menu Background Image Location
 menu.background.bitmap.filename,menu_background.png
@@ -87,14 +77,13 @@ sakura.bindgroup102.default,0
 //sakura.bindgroup102.name,Ability,Bomb
 //sakura.bindgroup102.default,0
 
-
 //Outfit Layering
 //sakura.bindoption0.group,Guns,multiple
 //sakura.bindoption2.group,Hand,mustselect
 
 //Outfit Menu
-sakura.menuitem0,101
-sakura.menuitem1,102
+//sakura.menuitem0,101
+//sakura.menuitem1,102
 //sakura.menuitem2,-
 
 //kero.menuitem1,-

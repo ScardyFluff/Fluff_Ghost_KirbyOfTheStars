@@ -109,7 +109,8 @@ normalboottalk
 	//This checks if the weekday equals six, meaning saturday AND (using the && operator) if the hour is past 19. You can change these numbers or values to anything you like! As such you can check any combination of date and day and time for potential boot dialogue. You can also add more elseif checks for other days if you want.
 	if weekday == 6 && hour >= 19
 		{
-			"\0\s[0]It's Saturday night.\e"
+			"\0It's Saturday night.\e"
+			//"\0\s[0]It's Saturday night.\e"
 		}
 	//elseif RAND(100) < 40
 		//{

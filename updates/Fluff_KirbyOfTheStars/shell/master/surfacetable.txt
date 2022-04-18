@@ -5,7 +5,6 @@ charset,UTF-8
 version,1
 option,DisableNoDefineSurfaces
 
-
 group,Kirby
 {
 	scope,0
@@ -30,7 +29,6 @@ group,Friend
 
 		10,Default
 }
-
 
 //group,__disabled
 //{

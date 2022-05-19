@@ -3,6 +3,7 @@
 
 OnFirstBoot //\![raise,OnFirstBoot,0]
 {
+//--- Base ---
  	lastTalk = ""
 	passhour = 0
 	passmin = 0 
@@ -16,19 +17,69 @@ OnFirstBoot //\![raise,OnFirstBoot,0]
 	talktime = "5 minutes"
 	deleteshitai = "OFF"
 	nowshell = "master"
+	firstboot = 1
+
+//--- Copy Ability ---
 	copyabilityON = 0
 	archerON = 0
 	artistON = 0
-	firstboot = 1
+
+//--- Friendship ---
+	KirbyAffection = 0
+	BandanaDeeAffection = 0
+	ElfilinAffection = 0
+	KingDededeAffection = 0
+	MetaKnightAffection = 0
+	PrinceFluffAffection = 0
+	ShadowKirbyAffection = 0
+
+//--- Friend Visiting ---
+	BandanaDeeVisiting = 0
+	ElfilinVisiting = 0
+	KingDededeVisiting = 0
+	MetaKnightVisiting = 0
+	PrinceFluffVisiting = 0
+	ShadowKirbyVisiting = 0
+	
+//--- Friend Available to Call ---
+	BandanaDeeNumber = 0
+	ElfilinNumber = 0
+	KingDededeNumber = 0
+	MetaKnightNumber = 0
+	PrinceFluffNumber = 0
+	ShadowKirbyNumber = 0
+	//Maybe more...?
+
+//--- General Modes ---
+	PhoneMode = 0
+	SleepyMode = 0
+	
+//--- Personality Modes --- (-100 to 100)
+	BasePersonality = 100
+	RebelPersonality = 0
+	EgoisticPersonality = 0
+	HopelessPersonality = 0
+	
+//--- Moods --- (-100 to 100)
+	HappyMood = 10
+	SadMood = -50
+	AnnoyedMood = -100
+	AngryMood = -100
+	BoredMood = -100
+	DespairMood = -100
+	
+	
+	
+
 
 	if reference0 == 0
  	{
 		// These lines go to kirby_nameteach.dic and does everything there.
 		"\![enter,passivemode]"
 		--
-		"\![bind,Ability,,0]\0\s[0]\1\s[10]"
+		"\0\![bind,Ability,,0]\s[0]\1\s[10]"
 		--
-		"Name?\w5\![open,inputbox,OnNameTeach,-1]\e"
+		"\0Name?\w5\![open,inputbox,OnNameTeach,-1]\e"
  	}
 	else
  	{

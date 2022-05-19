@@ -44,8 +44,8 @@ OnNameTeach
 		}
 		else
 		{
-			"\0\s[0]Got it. And what are your pronouns?\n\n[half]/
-			\w5\_q\![*]\q[He/Him/His,choicefirsthehim]\n/
+			"\0\s[0]I see. \w5I see! \w7And what about your pronouns?\n\n[half]/
+			\w3\b[4]\_q\![*]\q[He/Him/His,choicefirsthehim]\n/
 			\![*]\q[She/Her/Hers,choicefirstsheher]\n/
 			\![*]\q[They/Them/Their,choicefirsttheythem]\e"
 		}
@@ -89,7 +89,7 @@ Select.choicefirsttheythem
 
 TitleInput
 {	
-		"\0\s[0]...What is it?"
+		"\0\b[4]\s[0]Oh? \w9...What is it?"
 		--
 		"\n\n[half]/
 		\![*]\q[I want a title!,titlegimme]\n/
@@ -99,7 +99,7 @@ TitleInput
 
 Select.titlegimme
 	{
-		"\0\s[0]Which one then?"
+		"\0\b[4]\s[0]Ok! \w3I can do that! \w2What were you thinking of?"
 		--
 		if presuffix == "masculine" //this value was defined in bootend.dic and menu.dic when the user chose their pronouns. Thus, if someone chose he/him pronouns, they would be able to choose Mr. or Master.
 		{
@@ -196,7 +196,7 @@ NameDone
 		firstboot = 0 //this turns the flag off
 		
 		//This dialogue will display the first time the user puts in their name. You might want to add some closing thoughts to the introduction your ghost had in OnFirstBoot, or directions about how to use the ghost, or something like that. It's up to you!
-		"\![leave,passivemode]Then you're %(username)."
+		"\![leave,passivemode]Well, \w9nice to meet you %(username)!\w9\w3\x\c\s[0]\w9.\w9.\w9.\w9\w5"
 	}
 	else
 	{

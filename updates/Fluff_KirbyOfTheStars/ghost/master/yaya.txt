@@ -27,14 +27,12 @@ dic, kirby_anchor.dic
 dic, kirby_copyability.dic
 //dic, kirby_health.dic
 //dic, kirby_adventures.dic
-//dic, kirby_storyone.dic
-//dic, kirby_storytwo.dic
-//dic, kirby_storythree.dic
+//dic, kirby_phonecall.dic
+//dic, kirby_personality.dic
+//dic, kirby_currentmood.dic
+
+
 //dic, kirby_.dic
-
-
-
-
 dic, kirby_debug.dic
 
 //---- Log Location -------------------------------------------------------------------------

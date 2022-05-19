@@ -16,9 +16,7 @@
 
 OpenSakuraMenu
 {
-		"\0\s[0]\b2This is the first random menu open dialogue."
-		"\0\s[0]\b2This is the second random menu open dialogue."
-		"\0\s[0]\b2This is the third random menu open dialogue."
+		"\0\s[0]\b[2]Oo!\w9 What would you like to do?"
 		--
 		MenuRun
 }
@@ -34,9 +32,12 @@ MenuRun
 	--
 	"\n\n\_q\b2" //The \n\n means two new lines as detailed in the walkthrough, and \_q means quick session, meaning all the text from this point on will display instantly instead of a few letters at a time like normal ghost dialogue.
 	--
+	"\![*]\q[Can you talk to me?,OnAiTalk]\n"
+	--
+
 	if lastTalk != "" //What this does is check to see if the ghost has already said a random bit of dialogue on its own, essentially by seeing if the lastTalk thing is NOT empty (!= means "does not equal").
 	{
-	  "\![*]\q[Repeat Last Dialogue,OnLastTalk]\n\n[half]"
+	  "\![*]\q[Can you repeat what you said?,OnLastTalk]\n\n[half]"
 	  //If the ghost has said something, it will then display this menu option. You can replace "Repeat Last Dialogue" with whatever caption you like, such as "What were you saying?" or "What did you say?" or "Could you repeat that?" or something like that.
 	  
 	  //*********************Advanced User Info*******************************
@@ -45,9 +46,6 @@ MenuRun
 	  //I briefly touched in bootend.dic about \q, but I'll again cover it here. Pay very close attention to how this bit of dialogue is formatted. You'll see it goes \![*]\q[Displayed Name,linkedfunction]. Breaking it down, \![*] puts the balloon's option icon in front of the choice (usually a > or something), \q sets up the choice, Displayed Name which is the text that will display in the ghost's balloon, then linkedfunction, which is what the choice is linked to when the user clicks it. As you go through this file, look at how every menu option is set up, and you will see they all follow this format, give or take a \![*]. If you're going to be adding new options to menus or creating your own functions and such, make sure you follow this format and learn it well. Make sure to read the coding page of the walkthrough.
 	  //***********************************************************************
 	}
-	--
- 	"\![*]\q[Say something,OnAiTalk]\n"
-	"\![*]\q[Say something 2,OnAiTalk]\n"
 	
 	//This option will force the ghost to say something from aitalk if the user clicks it. Just replace "Say something" and "Say something 2" with whatever captions you think would be appropriate for such an option. IF you don't want two options for captions, delete one of the lines.
 	//Advanced users, you can add multiple captions for any option you add to a menu you make just like this, as long as you separate it from the other options into its own section with two dashes above and below.
@@ -59,10 +57,11 @@ MenuRun
 	//These three lead to the Config Menu, the Function menu, and Cancel. You can leave these alone if you like. All the envelopes at the end (see word.dic) basically display the year, month, day, weekday, and time.
 }
 
-//Leave this alone
 OnLastTalk 
 {
-"%(lastTalk)\e"
+	"\0\s[0]Ok!\w4 Now what was it\w8.\w8.\w8.\w9 Ah!\w7\c"
+	--
+	"%(lastTalk)\e"
 }
 
 //This is figuring out what day of the week it is. Leave it alone.

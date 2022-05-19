@@ -1,4 +1,22 @@
-﻿//---------------------------Envelopes--------------------------
+﻿
+//--- kirby_word.dic ----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //This .dic file is probably one of the simplest you will have to edit, and in fact, if the way it works doesn't appeal to you, you can completely ignore it if you like!
 //Basically, what this file does is set up some things that, for the purposes of this file, I'll call envelopes (this is what they're referred to as on the CROW-SSP Dictionary site... at least, that's what I remember, it's been a while since I've checked it). They are technically functions and can do many things, but this file is mostly an organizational tool for storing lists you may use.
 //For the purposes of this file, an envelope is a list that you can populate with items, and this list can be called later during dialogue with the %(name) format. If you've read the walkthrough or gone through any of the other .dic files, you've probably seen these before. %(username) is one, which displays the user's name, and %(heshe) is another, which displays the right pronoun depending on what the user selected in bootend.dic or menu.dic. Other ones include %(passmin), which shows how many minutes have passed since the ghost was started, %(screenheight) which shows the height of the display they're currently on, and %(keroname) for the name of the second character, among many, many others. Many of these are predefined by the AYA scripting and will be listed on the CROW-SSP site mentioned above, and many of them you will never have to use.
@@ -128,14 +146,9 @@ lessonkor
 
 //You can also format your envelopes like this as one line separated by semicolons, but personally I think the spaced lists above look nicer. It's up to you however you want to set them up.
 
-blanklistparagraph
-{
-	"List paragraph 1"; "List paragraph 2"; "List paragraph 3"; "List paragraph 4"; "List paragraph 5";
-}
 
-
- //**** Don't touch this ***************************************************************
- //This is code stuff and nothing for you to worry about, just save the .dic and move on! You're done!
+//**** Don't touch this ***************************************************************
+//This is code stuff and nothing for you to worry about, just save the .dic and move on! You're done!
  
  On_\person
 {
